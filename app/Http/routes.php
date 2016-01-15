@@ -25,7 +25,18 @@ Route::get('/', function () {
 | kernel and includes session state, CSRF protection, and more.
 |
 */
-
+// AJAX routes do not work inside the web middleware
+	Route::post('/ct_form', 'CTTestController@post_form');
+	Route::post('/ct_reset', 'CTTestController@post_reset');
+		
 Route::group(['middleware' => ['web']], function () {
-    //
+	
+	Route::get('/ct_form', 'CTTestController@index');
+	Route::get('/edit/{line_id}', 'CTTestController@getEdit');
+
 });
+
+
+
+
+
